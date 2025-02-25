@@ -1,6 +1,7 @@
-import Dashboard from "@/components/Dashboard"
+import Dashboard from "@/components/Dashboard";
 
-function App() {
+
+const App = () => {
 
   return (
     <Dashboard/>

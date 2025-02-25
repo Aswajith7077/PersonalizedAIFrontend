@@ -2,6 +2,7 @@ import { SiGmail } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaSlack } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
+import { FaTelegramPlane } from "react-icons/fa";
 
 import {
   Sidebar,
@@ -14,26 +15,31 @@ import {
   SidebarMenuItem
 } from "@/components/ui/sidebar";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Menu items.
 const items = [
   {
     title: "Gmail Inbox",
+    url: "/gmail",
     icon: SiGmail
   },
   {
-    title: "Slack",
+    title: "Slack Channels",
+    url: "/slack",
     icon: FaSlack
   },
   {
-    title: "Whatsapp Login",
-    icon: IoLogoWhatsapp
+    title: "Telegram Chats",
+    url: "/telegram",
+    icon: FaTelegramPlane
   }
 ];
 
 const AppSidebar = () => {
 
   const [tool,setTool] = useState(0);
+  const navigate = useNavigate();
 
   return <Sidebar>
       <SidebarContent>
@@ -45,7 +51,10 @@ const AppSidebar = () => {
             <SidebarMenu>
               {items.map((item,key) => <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Button variant={tool === key ? 'secondary' : 'ghost'} onClick={() => setTool(key)} className={`text-md h-10 justify-baseline cursor-pointer`}>
+                    <Button variant={tool === key ? 'secondary' : 'ghost'} onClick={() => {
+                      setTool(key);
+                      navigate(item.url);
+                    }} className={`text-md h-10 justify-baseline cursor-pointer`}>
                       <item.icon />
                       <span>
                         {item.title}
