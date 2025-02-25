@@ -1,5 +1,5 @@
 import { ScrollArea } from "./ui/scroll-area";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { FaHashtag } from "react-icons/fa6";
@@ -7,11 +7,14 @@ import axios from "axios";
 import { Separator } from "@/components/ui/separator";
 import { Outlet, useNavigate } from "react-router-dom";
 
-const getChannels = (setChannels) => {
+const getChannels = async (channels,setChannels) => {
+  console.log('getChannels')
+  if(channels)
+    return;
   axios
     .get("http://localhost:9000/slack/channels")
     .then(res => {
-      console.log(res.data);
+      console.log(res);
       setChannels(res.data);
     })
     .catch(err => {
@@ -24,19 +27,18 @@ const Slack = () => {
   const [context, setContext] = useState(undefined);
   const navigate = useNavigate();
 
-  // const handleGetChannels = useCallback(
-  //   setChannels => getChannels(setChannels),
-  //   [getChannels]
-  // );
   const handleNavigate = useCallback((route: string) => navigate(route), [
     navigate
   ]);
 
   useEffect(() => {
-    console.log('UseEffect : ',channels)
-    if (channels !== undefined) return; // Prevent re-fetching if data is already set
-    getChannels(setChannels);
-  }, []);
+    if (channels) return;
+    getChannels(channels, setChannels);
+  }, []);   
+
+  // useEffect(() => {
+  //   console.log(channels)
+  // },[channels]);  
 
 
   return (

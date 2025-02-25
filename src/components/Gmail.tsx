@@ -127,9 +127,9 @@ const Gmail = () => {
   const [content, setContent] = useState<object | undefined>(undefined);
 
 
-  useEffect(() => {
-    console.log(content);
-  },[content])
+  // useEffect(() => {
+  //   console.log(content);
+  // },[content])
 
   useEffect(() => {
     if(isLogged){

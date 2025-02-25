@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Telegram = () => {
+
+
+  
   return (
     <div>Telegram</div>
   )
 }
 
-export default Telegram
+export default Telegram;
