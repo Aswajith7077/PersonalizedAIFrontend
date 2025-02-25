@@ -171,7 +171,7 @@ const Gmail = () => {
       </div>
       <section className="flex flex-col w-2/3">
         <div className="h-screen w-full border">
-          <Card className={`w-full cursor-pointer border-none h-1/2`}>
+          <Card className={`w-full cursor-pointer border-none h-1/2 overflow-y-auto`}>
             {content && <CardHeader>
                 <CardTitle className="text-lg">
                   {content.from}
@@ -205,7 +205,7 @@ const Gmail = () => {
               </CardFooter>}
           </Card>
           <Separator />
-          <Card className="h-1/2 border-none">
+          <Card className="h-1/2 border-none overflow-y-auto">
             {content && <CardContent className="gap-5">
                 <div className="flex flex-col items-center gap-5 mb-10">
                   <h1 className="w-full font-semibold text-left text-xl">Summary of the Email</h1>

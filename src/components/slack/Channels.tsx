@@ -15,14 +15,7 @@ import { FaHashtag } from "react-icons/fa6";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from "../ui/card";
+
 
 const getMessages = (id: string, setMessage) => {
   axios
@@ -31,13 +24,7 @@ const getMessages = (id: string, setMessage) => {
       console.log(res);
       const result = res.data;
       result.reverse();
-      setMessage(
-        result.map(value => ({
-          description: value,
-          assignee: "Anonymous",
-          due_date: "Edited"
-        }))
-      );
+      setMessage(result);
     })
     .catch(err => {
       toast("Failed to Load Messages", { description: `${err}` });
@@ -146,7 +133,9 @@ const Channels = () => {
             message.length &&
             message.map((value, key) => {
               return (
-                <Button key={key}>{value}</Button>
+                <Button key={key} variant={
+                  'secondary'
+                } className="flex justify-start w-fit">{value}</Button>
               );
             })}
         </div>
