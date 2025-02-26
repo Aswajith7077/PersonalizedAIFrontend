@@ -6,15 +6,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { Separator } from "@/components/ui/separator";
 import { Outlet, useNavigate } from "react-router-dom";
-
-
-// const Telegram = () => {
-//   return (
-//     <div>Telegram</div>
-//   )
-// }
-
-// export default Telegram;
+import { Toaster } from '@/components/ui/sonner';
 
 
 const getGroupChats = async (setChats) => {
@@ -44,6 +36,10 @@ const Telegram = () => {
     if (chats) return;
       getGroupChats(setChats);
   }, []);   
+
+  useEffect( () => {
+    console.log(chats);
+  },[chats])
 
   return (
     <>
@@ -79,7 +75,7 @@ const Telegram = () => {
         <Separator className="mb-7" />
 
         <div className="flex flex-col gap-3 h-1/2 px-7">
-          <Button
+        {chats && <Button
             variant="outline"
             className="py-7 cursor-pointer text-base w-full"
             onClick={() => {
@@ -92,11 +88,12 @@ const Telegram = () => {
             }}
           >
             Provide Summary
-          </Button>
+          </Button>}
         </div>
       </div>
       <section className="w-2/3 h-screen border">
         <Outlet context={context} />
+        <Toaster />
       </section>
     </>
   );

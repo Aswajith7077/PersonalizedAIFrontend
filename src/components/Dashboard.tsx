@@ -7,6 +7,7 @@ import { Routes,Route,BrowserRouter } from "react-router-dom";
 import Summary from "@/components/slack/Summary";
 import DailyDigest from "@/components/slack/DailyDigest";
 import Channels from "@/components/slack/Channels";
+import TeleSummary from "@/components/telegram/summary";
 
 const Dashboard = () => {
     document.body.classList.add("dark");
@@ -20,7 +21,9 @@ const Dashboard = () => {
             <Route path="channel" element={<Channels />} />
             <Route path="daily_digest" element={<DailyDigest />} />
           </Route>
-          <Route path="/telegram" element={<Telegram />} />
+          <Route path="/telegram" element={<Telegram />} >
+            <Route path="summary" element={<TeleSummary/>}/>
+          </Route>
         </Routes>
       </SidebarProvider>
     </BrowserRouter>;
