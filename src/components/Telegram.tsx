@@ -43,9 +43,9 @@ const Telegram = () => {
 
   return (
     <>
-      <div className="flex flex-col w-1/3 h-screen">
+      <div className="flex flex-col w-1/2 h-screen">
         <div className="flex flex-row w-full items-end p-3 justify-end">
-          <Button>Login</Button> {/* Placeholder login for Telegram */}
+          <Button>Login</Button> 
         </div>
 
         <div className="flex flex-row items-center gap-2 px-5">
@@ -91,7 +91,7 @@ const Telegram = () => {
           </Button>}
         </div>
       </div>
-      <section className="w-2/3 h-screen border">
+      <section className="w-1/2 h-screen border">
         <Outlet context={context} />
         <Toaster />
       </section>

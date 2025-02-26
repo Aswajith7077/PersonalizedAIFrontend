@@ -62,18 +62,26 @@ const authenticate = () => {
 const getEmails = (
   email: string[] | undefined,
   setEmail: Dispatch<SetStateAction<string[] | undefined>>
-) => {
-  console.log('Config : ',config);
+  ) => {
   axios
     .get(config.GET_EMAIL_URL)
-    .then(res => {
-      setEmail(res.data);
+    .then((res) => {
+      const [ email, unanswered_mail ] = res.data; // Destructure the response
+
+      // Set Gmail results to state
+      setEmail(email);
+
+      //notify if there were any unanswered important mails
+      if (unanswered_mail && unanswered_mail.length > 0) {
+        toast(unanswered_mail.join('\n'));
+      }
     })
     .catch((error: unknown) => {
       console.log(error);
       toast("There is an error in the code", { description: `${error}` });
     });
 };
+
 
 const getBody = (thread_id:string,setContent) => {
   axios

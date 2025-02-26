@@ -36,11 +36,7 @@ const Slack = () => {
     getChannels(channels, setChannels);
   }, []);   
 
-  // useEffect(() => {
-  //   console.log(channels)
-  // },[channels]);  
-
-
+  
   return (
     <>
       <div className="flex flex-col w-1/3 h-screen">
